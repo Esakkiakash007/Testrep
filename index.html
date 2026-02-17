@@ -1,17 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskMate - To-Do & Notes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">TM</div>
+      <div>
+        <h1>TaskMate</h1>
+        <p class="subtitle">To-Do + Notes (Auto Save)</p>
+      </div>
+    </div>
 
-  <form method="POST" action="login.php">
-    <h2>Login</h2>
-    <input type="text" name="username" placeholder="Username" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Login</button>
-    <p>Don't have an account? <a href="register.html">Register here</a></p>
-  </form>
+    <div class="top-actions">
+      <button id="themeBtn" class="btn btn-ghost" type="button" aria-label="Toggle theme">
+        🌙 <span class="hide-sm">Theme</span>
+      </button>
+      <button id="clearBtn" class="btn btn-danger" type="button">
+        🗑️ <span class="hide-sm">Clear All</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Create Task</h2>
+        <p class="muted">Add title + optional note. Enter/Click Add.</p>
+      </div>
+
+      <form id="taskForm" class="form">
+        <div class="field">
+          <label for="title">Title</label>
+          <input id="title" type="text" placeholder="Eg: Buy groceries" autocomplete="off" required />
+        </div>
+
+        <div class="field">
+          <label for="note">Note (optional)</label>
+          <input id="note" type="text" placeholder="Eg: Milk, bread, eggs" autocomplete="off" />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="due">Due</label>
+            <input id="due" type="date" />
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">➕ Add Task</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Your Tasks</h2>
+        <div class="toolbar">
+          <div class="pill-group" role="tablist" aria-label="Task filters">
+            <button class="pill is-active" data-filter="all" type="button">All</button>
+            <button class="pill" data-filter="active" type="button">Active</button>
+            <button class="pill" data-filter="done" type="button">Done</button>
+          </div>
+
+          <div class="search">
+            <input id="search" type="search" placeholder="Search…" />
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" id="stats">
+        <span class="chip" id="totalChip">Total: 0</span>
+        <span class="chip" id="activeChip">Active: 0</span>
+        <span class="chip" id="doneChip">Done: 0</span>
+      </div>
+
+      <ul id="list" class="list" aria-live="polite"></ul>
+
+      <div id="emptyState" class="empty">
+        <div class="empty-emoji">📝</div>
+        <h3>No tasks yet</h3>
+        <p class="muted">Add a task above. Everything saves automatically.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h3 id="modalTitle">Edit Task</h3>
+        <button id="closeModal" class="icon-btn" type="button" aria-label="Close">✖</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="field">
+          <label for="editTitle">Title</label>
+          <input id="editTitle" type="text" />
+        </div>
+
+        <div class="field">
+          <label for="editNote">Note</label>
+          <input id="editNote" type="text" />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="editPriority">Priority</label>
+            <select id="editPriority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="editDue">Due</label>
+            <input id="editDue" type="date" />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-foot">
+        <button id="deleteFromModal" class="btn btn-danger" type="button">Delete</button>
+        <div class="spacer"></div>
+        <button id="saveEdit" class="btn btn-primary" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Made with ❤️ | TaskMate</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
