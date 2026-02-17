@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  height: 100vh;
+  background: linear-gradient(270deg, #1e3c72, #2a5298, #3b8d99, #6dd5ed);
+  background-size: 800% 800%;
+  animation: animateBg 15s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+@keyframes animateBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+form {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  animation: slideIn 1s ease;
+  width: 300px;
+  text-align: center;
+}
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+input, button {
+  padding: 10px;
+  margin: 10px 0;
+  width: 90%;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+button {
+  background-color: #00c6ff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button:hover {
+  background-color: #0072ff;
+}
+a {
+  color: #00ffff;
+  text-decoration: none;
+}
+.history-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  animation: slideIn 1s ease;
+}
+ul#expenseList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul#expenseList li {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 5px solid #00c6ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+}
+ul#expenseList button {
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-size: 18px;
+  cursor: pointer;
+}
+ul#expenseList button:hover {
+  color: red;
+}
